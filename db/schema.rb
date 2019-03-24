@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2019_03_24_142502) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.date "starts_at"
-    t.date "ends_at"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.integer "tolerance"
     t.integer "capacity"
     t.datetime "created_at", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_142502) do
   create_table "guests", force: :cascade do |t|
     t.string "name"
     t.bigint "event_id"
-    t.date "time_of_arrival"
+    t.datetime "time_of_arrival"
     t.string "document"
     t.string "status"
     t.datetime "created_at", null: false

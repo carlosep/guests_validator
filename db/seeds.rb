@@ -1,11 +1,11 @@
-# 5.times do
-#   date = Faker::Date.forward(2)
-#   Event.create!(name: Faker::Lorem.sentence,
-#                 starts_at: date + 2.hours,
-#                 ends_at: date + 5.hours,
-#                 tolerance: Faker::Number.between(10, 20),
-#                 capacity: Faker::Number.between(100, 500))
-# end
+5.times do
+  date = Faker::Date.forward(2)
+  Event.create!(name: Faker::Lorem.sentence,
+                starts_at: date + 2.hours,
+                ends_at: date + 5.hours,
+                tolerance: Faker::Number.between(10, 20),
+                capacity: Faker::Number.between(100, 500))
+end
 
 statuses = %w[too late too early on time]
 

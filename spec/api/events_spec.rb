@@ -16,8 +16,8 @@ describe GuestsValidator::V1::Events do
     context 'with valid parameters' do
       it 'creates a new event' do
         params = { event: { name: 'event_test',
-                            starts_at: Time.zone.now + 2.hours,
-                            ends_at: Time.zone.now + 5.hours,
+                            starts_at: Time.current + 2.hours,
+                            ends_at: Time.current + 5.hours,
                             tolerance: 10,
                             capacity: 200 } }
 
