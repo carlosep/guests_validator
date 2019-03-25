@@ -13,17 +13,8 @@ module GuestsValidator
           end
 
           post do
-            date_time = Time.current
             guest = Guest.find(params[:id])
-            event = guest.event
-            guest.time_of_arrival = date_time
-            guest.status = if guest.time_of_arrival <= event.min_tolerance
-                             'early'
-                           elsif guest.time_of_arrival <= event.max_tolerance
-                             'on_time'
-                           else
-                             'late'
-                           end
+            guest.arrived_at(Time.current)
             if guest.save!
               present guest
             else

@@ -19,7 +19,7 @@ describe GuestsValidator::V1::Guests do
   describe 'POST /api/v1/events/:id/guests' do
     context 'with valid parameters' do
       it 'creates a new guest' do
-        params = { event: { name: 'guest_test',
+        params = { guest: { name: 'guest_test',
                             document: Faker::IDNumber.brazilian_citizen_number } }
         expect { post "/api/v1/events/#{@event.id}/guests", params: params }.to change(Guest, :count).by(+1)
         expect(response.status).to eq 201
@@ -31,7 +31,7 @@ describe GuestsValidator::V1::Guests do
       it 'does not create a guest' do
         expect { post "/api/v1/events/#{@event.id}/guests", params: { guest: {} } }.to change(Guest, :count).by(0)
         expect(response.status).to eq 400
-        expect(response.body).to include('event[name] is missing')
+        expect(response.body).to include('guest[name] is missing')
       end
     end
   end
@@ -62,6 +62,14 @@ describe GuestsValidator::V1::Guests do
           post "/api/v1/guests/#{@guest.id}"
         end
         expect(response.body).to include('late')
+      end
+    end
+    context 'Guest arrives after event' do
+      it 'updates the guest attributes' do
+        travel 3.hours do
+          post "/api/v1/guests/#{@guest.id}"
+        end
+        expect(response.body).to include('event_over')
       end
     end
   end

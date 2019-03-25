@@ -7,7 +7,7 @@
                 capacity: Faker::Number.between(100, 500))
 end
 
-statuses = %w[too late too early on time]
+statuses = %w[late early on_time]
 
 Event.all.each do |event|
   10.times do
